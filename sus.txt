@@ -1,0 +1,1 @@
+strings -e b suspicious.dd.sda1 | rev 
