@@ -1,0 +1,30 @@
+cp mystery fixed.png
+
+xxd -g 1 fixed.png | head
+
+printf '\x00\x00\x00\x0D\x49\x48\x44\x52' | dd of=fixed.png bs=1 seek=8 count=8 conv=notrunc
+
+xxd -g 1 fixed.png | head
+
+pngcheck -v -f fixed.png
+
+printf '\x00' | dd of=fixed.png bs=1 seek=70 count=1 conv=notrunc
+
+xxd -g 1 fixed.png | head
+
+pngcheck -v -f fixed.png
+
+xxd -g 1 -s 0x53 -l 8 fixed.png
+
+printf 'IDAT' | dd of=fixed.png bs=1 seek=87 count=4 conv=notrunc
+
+binwalk -R "IDAT" fixed.png
+
+printf '\x00\x00' | dd of=fixed.png bs=1 seek=83 count=2 conv=notrunc
+
+pngcheck -v -f fixed.png
+
+
+binwalk -R "IDAT" fixed.png
+xxd -g 1 fixed.png | head
+pngcheck -v -f fixed.png
