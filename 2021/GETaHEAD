@@ -1,0 +1,14 @@
+GET aHEAD
+| 20 points
+Tags: 
+
+Author: madStacks
+Description
+
+Find the flag being held on this server to get ahead of the competition http://mercury.picoctf.net:15931/
+
+
+https://reqbin.com/
+
+paste the url and get the head
+
